@@ -1,0 +1,12 @@
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\bin\Debug\net6.0\KoreAiDatabase.deps.json
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\bin\Debug\net6.0\KoreAiDatabase.dll
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\bin\Debug\net6.0\KoreAiDatabase.pdb
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.AssemblyInfo.cs
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.dll
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\refint\KoreAiDatabase.dll
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\KoreAiDatabase.pdb
+C:\Users\Admin\source\repos\KoreAiWebService\KoreAiDatabase\obj\Debug\net6.0\ref\KoreAiDatabase.dll
