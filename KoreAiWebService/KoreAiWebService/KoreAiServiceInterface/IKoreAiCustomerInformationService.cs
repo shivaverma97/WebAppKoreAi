@@ -15,5 +15,7 @@ namespace KoreAiWebService.KoreAiCustomerInformationServiceInterface
         Task<KoreAiControllerResponse<string>> UpdateCustomerInformationRecordByIdAsync(int customerId, string emailId);
 
         Task<KoreAiControllerResponse<string>> DeleteCustomerInformationRecordByIdAsync(int customerId);
+
+        Task<KoreAiControllerResponse<string>> DeleteAllCustomerInformationRecordsAsync();
     }
 }

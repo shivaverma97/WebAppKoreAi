@@ -123,7 +123,7 @@ namespace KoreAiWebService.KoreAiServices
         {
             KoreAiControllerResponse<string> deleteCustomerInformationRecordResponse = new KoreAiControllerResponse<string>();
 
-            var responseFromDb = await _koreAiCustomerInformationRepository.DeleteCustomerInformationRecordByIdAsync(customerId);
+            var responseFromDb = await _koreAiCustomerInformationRepository.DeleteCustomerInformationRecordByIdInDbAsync(customerId);
 
             if (responseFromDb.Item2)
             {
@@ -139,6 +139,29 @@ namespace KoreAiWebService.KoreAiServices
         }
 
         #endregion DeleteCustomerInformationRecordByIdAsync
+
+        #region DeleteAllCustomerInformationRecordsAsync
+
+        public async Task<KoreAiControllerResponse<string>> DeleteAllCustomerInformationRecordsAsync()
+        {
+            KoreAiControllerResponse<string> deleteAllCustomerInformationRecordsResponse = new KoreAiControllerResponse<string>();
+
+            var responseFromDb = await _koreAiCustomerInformationRepository.DeleteAllCustomerInformationRecordsInDbAsync();
+
+            if (responseFromDb.Item2)
+            {
+                deleteAllCustomerInformationRecordsResponse.ResponseCode = ResponseCode.Success;
+            }
+            else
+            {
+                deleteAllCustomerInformationRecordsResponse.ErrorMessage = responseFromDb.Item1;
+                deleteAllCustomerInformationRecordsResponse.ResponseCode = ResponseCode.BadRequest;
+            }
+
+            return deleteAllCustomerInformationRecordsResponse;
+        }
+
+        #endregion  DeleteAllCustomerInformationRecordsAsync
 
         #endregion Public methods
 

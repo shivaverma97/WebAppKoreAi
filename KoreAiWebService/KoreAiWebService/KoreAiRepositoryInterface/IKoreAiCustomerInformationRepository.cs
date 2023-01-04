@@ -12,6 +12,8 @@ namespace KoreAiWebService.KoreAiCustomerInformationRepositoryInterface
 
         Task<(string, bool)> UpdateCustomerInformationRecordByIdInDbAsync(int customerId, string emailId);
 
-        Task<(string, bool)> DeleteCustomerInformationRecordByIdAsync(int customerId);
+        Task<(string, bool)> DeleteCustomerInformationRecordByIdInDbAsync(int customerId);
+
+        Task<(string, bool)> DeleteAllCustomerInformationRecordsInDbAsync();
     }
 }

@@ -166,6 +166,7 @@ namespace KoreAiWebService.Controllers
         #region DeleteCustomerInformationRecordById
 
         [HttpDelete]
+        [Route("{customerId}")]
         public async Task<IActionResult> DeleteCustomerInformationRecordById(int customerId)
         {
             KoreAiControllerResponse<string> deleteCustInfRecordByIdResponse = new KoreAiControllerResponse<string>();
@@ -198,6 +199,36 @@ namespace KoreAiWebService.Controllers
             }
         }
         #endregion DeleteCustomerInformationRecordById
+
+        #region DeleteAllCustomerInformationRecords
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAllCustomerInformationRecords()
+        {
+            KoreAiControllerResponse<string> deleteAllCustInfRecordByIdResponse = new KoreAiControllerResponse<string>();
+
+            deleteAllCustInfRecordByIdResponse = await _koreAiCustomerInformationService.DeleteAllCustomerInformationRecordsAsync();
+
+            switch (deleteAllCustInfRecordByIdResponse.ResponseCode)
+            {
+                case ResponseCode.Success:
+                    return StatusCode(200, deleteAllCustInfRecordByIdResponse.ResponseCode);
+
+                case ResponseCode.NotFound:
+                    return StatusCode(404, deleteAllCustInfRecordByIdResponse.ErrorMessage);
+
+                case ResponseCode.InternalServerError:
+                    return StatusCode(500, deleteAllCustInfRecordByIdResponse.ErrorMessage);
+
+                case ResponseCode.BadRequest:
+                    return StatusCode(400, deleteAllCustInfRecordByIdResponse.ErrorMessage);
+
+                default:
+                    return StatusCode(500, deleteAllCustInfRecordByIdResponse.ResponseCode);
+            }
+        }
+
+        #endregion DeleteAllCustomerInformationRecords
 
         #endregion Public methods
     }

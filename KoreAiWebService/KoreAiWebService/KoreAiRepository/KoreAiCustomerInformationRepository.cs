@@ -30,7 +30,9 @@ namespace KoreAiWebService.KoreAiRepository
 
             try
             {
-                allCustRecords = await _koreAiDbContext.CustomerInformation.Select(row => row).ToListAsync();
+                //allCustRecords = await _koreAiDbContext.CustomerInformation.Select(row => row).ToListAsync();
+
+                allCustRecords = await _koreAiDbContext.CustomerInformation.FromSqlRaw("select * from NewCustomerInformation").ToListAsync();
 
                 if (allCustRecords == null ||  allCustRecords.Count == 0)
                 {
@@ -61,7 +63,9 @@ namespace KoreAiWebService.KoreAiRepository
 
             try
             {
-                customerInformationRecord = await (from record in _koreAiDbContext.CustomerInformation where record.Customer_Id == customerId select record).FirstOrDefaultAsync();
+                //customerInformationRecord = await (from record in _koreAiDbContext.CustomerInformation where record.Customer_Id == customerId select record).FirstOrDefaultAsync();
+
+                customerInformationRecord = await _koreAiDbContext.CustomerInformation.FromSqlRaw($"select * from NewCustomerInformation where customer_id = {customerId}").FirstOrDefaultAsync();
 
                 if(customerInformationRecord == null)
                 {
@@ -154,9 +158,9 @@ namespace KoreAiWebService.KoreAiRepository
 
         #endregion UpdateCustomerInformationRecordByIdInDbAsync
 
-        #region DeleteCustomerInformationRecordByIdAsync
+        #region DeleteCustomerInformationRecordByIdInDbAsync
 
-        public async Task<(string, bool)> DeleteCustomerInformationRecordByIdAsync(int customerId)
+        public async Task<(string, bool)> DeleteCustomerInformationRecordByIdInDbAsync(int customerId)
         {
             var errorMessage = string.Empty;
             bool isSuccess = false;
@@ -192,8 +196,41 @@ namespace KoreAiWebService.KoreAiRepository
             return(errorMessage, isSuccess);
         }
 
-        #endregion DeleteCustomerInformationRecordByIdAsync
+        #endregion DeleteCustomerInformationRecordByIdInDbAsync
+
+        #region DeleteAllCustomerInformationRecordsInDbAsync
+
+        public async Task<(string, bool)> DeleteAllCustomerInformationRecordsInDbAsync()
+        {
+            string errorMessage = string.Empty;
+            bool isSuccess = false;
+
+            try
+            {
+                var responseFromDb = await _koreAiDbContext.Database.ExecuteSqlRawAsync($"Truncate table NewCustomerInformation");
+
+                if (responseFromDb == 0)
+                {
+                    errorMessage = $"Failed to delete all the records from customer information table";
+                }
+                else
+                {
+                    isSuccess = true;
+                }  
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Failed to delete all records in customer information table due to the following exception: {ex}";
+            }
+
+            return (errorMessage, isSuccess);
+        }
+
+        #endregion DeleteAllCustomerInformationRecordsInDbAsync
 
         #endregion Public methods
     }
 }
+
+
+// when working with functions where return model is not needed we can make tuple of each entry of our data type and return the tuple.
